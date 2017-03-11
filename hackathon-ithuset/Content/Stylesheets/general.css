@@ -9,3 +9,12 @@ f-left{
 f-center{
     margin: auto;
 }
+
+.search-result {
+
+    border: 1px solid black;
+    margin-top: 2%;
+    background-color: lightgreen;
+    border-radius: 2px;
+
+}
