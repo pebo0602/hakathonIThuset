@@ -4,24 +4,17 @@
 }
 
 @section styles{
-<link href="~/Content/Stylesheets/general.css" rel="stylesheet" />
-<link href="~/Content/Stylesheets/index.css" rel="stylesheet" />
+    <link href="~/Content/Stylesheets/general.css" rel="stylesheet" />
+    <link href="~/Content/Stylesheets/index.css" rel="stylesheet" />
 }
 
 <div class="header-box">
     <h2>Book searcher</h2>
 </div>
-
-<<<<<<< HEAD
-@Model
-<input type="text" name="query" id="query"/>
-<button class="search" onclick="getResult()">Sök</button>
-=======
 <div class="searchbar-container">
-    <input type="text" name="query" id="query"/>
+    <input type="text" name="query" id="query" />
     <button class="button btn-white" onclick="getResult()">Sök</button>
 </div>
->>>>>>> 951767b2a47f61059391d55cba3491689073b6e8
 
 <div id="result">
 
@@ -40,27 +33,25 @@
                 // TODO: Present beautifully
                 for (var i = 0; i < list.length; i++) {
                     var isbn = list[i].isbn;
-                    if(isbn instanceof Array)
+                    if (isbn instanceof Array)
                         isbn = isbn[0];
 
-<<<<<<< HEAD
-                    result = "<div class='search-result'>" + 
-=======
-                    $("#result").append("<div class='search-result'>" + 
->>>>>>> 951767b2a47f61059391d55cba3491689073b6e8
+
+
+                    result = "<div class='search-result'>" +
                                         "<h3> Title: " + list[i].title + "</h3>" +
                                         "<h5> Creator: " + list[i].creator + "</h5>" +
-                                        "<br>" + 
+                                        "<br>" +
                                         "<strong> Date: </strong>" + list[i].date +
-                                        "<br>" + 
-                                        "<strong> Language: " + list[i].language + 
+                                        "<br>" +
+                                        "<strong> Language: " + list[i].language +
                                         "<br>";
 
-                    if(isbn != "undefined") {
+                    if (isbn != "undefined") {
                         result += "<a href='/Home/Book/" + isbn + "'>View related books</a>"
                     }
-                     
-                     result += "</div>"
+
+                    result += "</div>"
 
                     $("#result").append(result);
                 }
@@ -70,12 +61,33 @@
         xhttp.send();
     }
 
-
-    function getResultDiv(list){
-
-        
-
-
-    }
-
 </script>
+
+@section ascripts
+    {
+    <script src="~/Scripts/formatresult.js"></script>
+    <script>
+        function getResult() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                $("#result").empty();
+                if (this.readyState == 4 && this.status == 200) {
+
+                    var jsonobj = JSON.parse(this.responseText);
+                    var list = jsonobj.xsearch.list;
+
+                    // TODO: Present beautifully
+                    for (var i = 0; i < list.length; i++) {
+                        var isbn = list[i].isbn;
+                        if (isbn instanceof Array)
+                            isbn = isbn[0];
+
+                        $("#result").append(formatResultDiv(list[i]));
+                    }
+                }
+            }
+            xhttp.open("GET", "http://libris.kb.se/xsearch?query=" + document.getElementById("query").value + "&format=json", true);
+            xhttp.send();
+        }
+    </script>
+}
