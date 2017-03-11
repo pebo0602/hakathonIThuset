@@ -28,15 +28,15 @@ function formatResultDiv(resultObj) {
 
 function formatSearchResult(object) {
     var result = "<div class='search-result'>" +
-        "<span class='title'>" + object.title + "</span>" +
-        "<span class='creator'>" + object.creator + "</span>";
+        "<div class='book-title'>" + object.title + "</div>" +
+        "<div class='book-author'>" + object.creator + "</div>";
 
     if (object.isbn) {
         var isbn = object.isbn;
         if (isbn instanceof Array) {
             isbn = isbn[0];
         }
-        result += "<a href='/Home/Book/" + isbn + "'><i class='fa fa-external-link fa-1x'></i></a>"
+        result += "<a href='/Home/Book/" + isbn + "'><i class='fa fa-external-link fa-1x float-right'></i></a>"
     }
 
     return result;

@@ -39,3 +39,12 @@
     transition-duration: 200ms;
 }
 
+.book-title{
+    float: left;
+    width: 30%;
+}
+
+.book-author{
+    float: left;
+    width: 30%;
+}

@@ -37,14 +37,15 @@ input, button:focus{
     outline: none;
 }
 
-
-
-
 .search-result {
-
-    border: 1px solid black;
-    margin-top: 2%;
-    background-color: lightgreen;
-    border-radius: 2px;
-
+    overflow: auto;
+    padding: 10px;
+    margin: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: rgba(0, 0, 0, 0.03);
 }
+
+.search-result:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
