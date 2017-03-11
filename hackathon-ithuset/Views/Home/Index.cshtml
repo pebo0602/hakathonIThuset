@@ -3,11 +3,25 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@section styles{
+<link href="~/Content/Stylesheets/general.css" rel="stylesheet" />
+<link href="~/Content/Stylesheets/index.css" rel="stylesheet" />
+}
 
+<div class="header-box">
+    <h2>Book searcher</h2>
+</div>
+
+<<<<<<< HEAD
 @Model
 <input type="text" name="query" id="query"/>
 <button class="search" onclick="getResult()">Sök</button>
+=======
+<div class="searchbar-container">
+    <input type="text" name="query" id="query"/>
+    <button class="button btn-white" onclick="getResult()">Sök</button>
+</div>
+>>>>>>> 951767b2a47f61059391d55cba3491689073b6e8
 
 <div id="result">
 
@@ -29,7 +43,11 @@
                     if(isbn instanceof Array)
                         isbn = isbn[0];
 
+<<<<<<< HEAD
                     result = "<div class='search-result'>" + 
+=======
+                    $("#result").append("<div class='search-result'>" + 
+>>>>>>> 951767b2a47f61059391d55cba3491689073b6e8
                                         "<h3> Title: " + list[i].title + "</h3>" +
                                         "<h5> Creator: " + list[i].creator + "</h5>" +
                                         "<br>" + 
