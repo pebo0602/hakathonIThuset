@@ -2,12 +2,6 @@
     min-height: 100vh;
 }
 
-footer{
-    position: absolute;
-    bottom: 0;
-    right: calc(50% - 136px);
-}
-
 .float-right{
     float: right;
 }
