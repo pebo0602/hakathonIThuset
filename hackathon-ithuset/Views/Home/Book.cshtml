@@ -5,15 +5,13 @@
 }
 
 @section styles {
-    }
-
-<h2>Book</h2>
-
+    <link href="~/Content/Stylesheets/book.css" rel="stylesheet" />
+}
 <div id="book"></div>
 <div id="related"></div>
 
 @section ascripts {
-<script src="~/Scripts/formatresult.js"></script>
+    <script src="~/Scripts/formatresult.js"></script>
     <script>
         $(document).ready(function () {
             var model = @Html.Raw(Json.Encode(Model));

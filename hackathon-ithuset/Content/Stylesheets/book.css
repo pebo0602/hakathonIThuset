@@ -1,0 +1,10 @@
+﻿#related * {
+    margin: 0;
+}
+
+#related .search-result {
+    padding: 15px;
+    box-sizing: border-box;
+    margin: 10px 0;
+    background-color: #efefef;
+}
