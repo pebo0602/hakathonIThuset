@@ -1,4 +1,4 @@
-﻿@model int
+﻿@model hackathon_ithuset.Models.BookViewModel
 @{
     ViewBag.Title = "Book";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,25 +12,39 @@
 @section ascripts {
 
     <script>
-    $(document).ready(function () {
-        console.log("Ready!");
+        $(document).ready(function () {
+            var model = @Html.Raw(Json.Encode(Model));
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            $("#book").empty();
-            if (this.readyState == 4 && this.status == 200) {
+            GetRelatedBookInformation(model.isbn);
 
-                var jsonobj = JSON.parse(this.responseText);
-                var list = jsonobj.xsearch.list;
+            for (var i = 0; i < model.relatedisbns.length; i++) {
+                GetRelatedBookInformation(model.relatedisbns[i]);
+            }
+        });
 
-                // TODO: Present beautifully
-                for (var i = 0; i < list.length; i++) {
-                    $("#book").append(list[i].title);
+        function GetBookInformation() {}
+
+        function GetRelatedBookInformation(isbn) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonobj = JSON.parse(this.responseText);
+                    var list = jsonobj.xsearch.list;
+
+                    $("#related").append("<div class='search-result'>" + 
+                                        "<h3> Title: " + list[0].title + "</h3>" +
+                                        "<h5> Cteator: " + list[0].creator + "</h5>" +
+                                        "<br>" + 
+                                        "<strong> Date: </strong>" + list[0].date +
+                                        "<br>" + 
+                                        "<strong> Language: " + list[0].language +
+                                        "<br>" +
+                                        "<a href='/Home/Book/" + isbn + "'>View Book</a>" + 
+                                        "</div>");
                 }
             }
+            xhttp.open("GET", "http://libris.kb.se/xsearch?query=isbn:" + isbn + "&format=json", true);
+            xhttp.send();
         }
-        xhttp.open("GET", "http://libris.kb.se/xsearch?query=isbn:0585348634&format=json", true);
-        xhttp.send();
-    });
     </script>
 }
