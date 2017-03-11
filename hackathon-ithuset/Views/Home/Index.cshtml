@@ -30,13 +30,19 @@
 
                 // TODO: Present beautifully
                 for (var i = 0; i < list.length; i++) {
-                    $("#list").append("<div>" + 
-                                        "<h3>" + list[i].title + "</h3>" +
-                                        "<h5>" + list[i].creator + "</h5>" +
+                    
+                    var isbn = list[i].isbn;
+                    if(typeof instanceof Array)
+                        isbn = isbn[0];
+
+                    $("#list").append("<div class='search-result'>" + 
+                                        "<h5> Title: " + list[i].title + "</h6>" +
+                                        "<h6> Creator: " + list[i].creator + "</h6>" +
                                         "<br>" + 
-                                        "<strong>Date: </strong>" + list[i].date +
+                                        "<strong> Date: </strong>" + list[i].date +
                                         "<br>" + 
                                         "<strong> Language: " + list[i].language + 
+                                        "<a href='/Home/Book/" + isbn + "'/>" + 
                                         "</div>");
                 }
             }
@@ -45,4 +51,4 @@
         xhttp.send();
     }
 </script>
->>>>>>> 038961c367633c240184b005f891cd63d6190970
+
