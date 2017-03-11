@@ -26,10 +26,10 @@
                 // TODO: Present beautifully
                 for (var i = 0; i < list.length; i++) {
                     var isbn = list[i].isbn;
-                    if(typeof instanceof Array)
+                    if(isbn instanceof Array)
                         isbn = isbn[0];
 
-                    $("#result").append("<div>" + 
+                    $("#result").append("<div class='search-result'>" + 
                                         "<h3> Title: " + list[i].title + "</h3>" +
                                         "<h5> Cteator: " + list[i].creator + "</h5>" +
                                         "<br>" + 

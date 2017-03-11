@@ -1,4 +1,4 @@
-﻿@model int
+﻿@model List<string>
 @{
     ViewBag.Title = "Book";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,25 +12,34 @@
 @section ascripts {
 
     <script>
-    $(document).ready(function () {
-        console.log("Ready!");
+        $(document).ready(function () {
+            var model = @Html.Raw(Json.Encode(Model));
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            $("#book").empty();
-            if (this.readyState == 4 && this.status == 200) {
+            for (var i = 0; i < model.length; i++) {
+                GetRelatedBookInformation(model[i]);
+            }
+        });
 
-                var jsonobj = JSON.parse(this.responseText);
-                var list = jsonobj.xsearch.list;
+        function GetRelatedBookInformation(isbn) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonobj = JSON.parse(this.responseText);
+                    var list = jsonobj.xsearch.list;
 
-                // TODO: Present beautifully
-                for (var i = 0; i < list.length; i++) {
-                    $("#book").append(list[i].title);
+                    $("#related").append("<div class='search-result'>" + 
+                                        "<h3> Title: " + list[0].title + "</h3>" +
+                                        "<h5> Cteator: " + list[0].creator + "</h5>" +
+                                        "<br>" + 
+                                        "<strong> Date: </strong>" + list[0].date +
+                                        "<br>" + 
+                                        "<strong> Language: " + list[0].language + 
+                                        "<a href='/Home/Book/" + isbn + "'>View Book</a>" + 
+                                        "</div>");
                 }
             }
+            xhttp.open("GET", "http://libris.kb.se/xsearch?query=isbn:" + isbn + "&format=json", true);
+            xhttp.send();
         }
-        xhttp.open("GET", "http://libris.kb.se/xsearch?query=isbn:0585348634&format=json", true);
-        xhttp.send();
-    });
     </script>
 }
