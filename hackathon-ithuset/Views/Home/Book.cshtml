@@ -5,20 +5,13 @@
 }
 
 @section styles {
-    <style>
-        #book .search-result {
-            background-color: red;
-        }
-    </style>
-    }
-
-<h2>Book</h2>
-
+    <link href="~/Content/Stylesheets/book.css" rel="stylesheet" />
+}
 <div id="book"></div>
 <div id="related"></div>
 
 @section ascripts {
-<script src="~/Scripts/formatresult.js"></script>
+    <script src="~/Scripts/formatresult.js"></script>
     <script>
         $(document).ready(function () {
             var model = @Html.Raw(Json.Encode(Model));
@@ -37,7 +30,7 @@
                     var jsonobj = JSON.parse(this.responseText);
                     var list = jsonobj.xsearch.list;
 
-                    $("#book").append(formatResultDiv(list[0]));
+                    $("#book").append(formatBookInformation(list[0]));
                 }
             }
             xhttp.open("GET", "http://libris.kb.se/xsearch?query=isbn:" + isbn + "&format=json", true);

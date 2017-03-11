@@ -26,6 +26,22 @@ function formatResultDiv(resultObj) {
     return result;
 }
 
+function formatBookInformation(resultObj) {
+
+    var result = "<div class='search-result'>" +
+             "<h3> Title: " + resultObj.title + "</h3>" +
+             "<h5> Creator: " + resultObj.creator + "</h5>" +
+             "<br>" +
+             "<strong> Date: </strong>" + resultObj.date +
+             "<br>" +
+             "<strong> Language: " + resultObj.language +
+             "<br>";
+
+    result += "</div>";
+
+    return result;
+}
+
 function formatSearchResult(object) {
     var result = "<div class='search-result'>" +
         "<div class='book-title'>" + object.title + "</div>" +
