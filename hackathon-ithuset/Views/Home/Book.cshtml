@@ -15,9 +15,8 @@
     $(document).ready(function () {
         console.log("Ready!");
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            $("#book").empty();
+        var xhttp1 = new XMLHttpRequest();
+        xhttp1.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
 
                 var jsonobj = JSON.parse(this.responseText);
@@ -29,8 +28,22 @@
                 }
             }
         }
-        xhttp.open("GET", "http://libris.kb.se/xsearch?query=isbn:0585348634&format=json", true);
-        xhttp.send();
+        xhttp1.open("GET", "http://libris.kb.se/xsearch?query=isbn:0585348634&format=json", true);
+        xhttp1.send();
+
+        var xhttp2 = new XMLHttpRequest();
+        xhttp2.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var jsonobj = JSON.parse(this.responseText);
+                var list = jsonobj.relatedrecords.related;
+
+                for (var i = 0; i < list.length; i++) {
+                    $("#related").append(list[i].url);
+                }
+            }
+        }
+        xhttp2.open("GET", "http://api.libris.kb.se/relrec/related?isbn=0-585-34863-4&format=json", true);
+        xhttp2.send();
     });
     </script>
 }
