@@ -11,17 +11,13 @@ namespace hackathon_ithuset.Controllers
         // GET: Home
         public ActionResult Index()
         {
-
-            return View(((object)"Hej hej"));
+            return View();
         }
 
-        // POST: Home
-        [HttpPost]
-        public ActionResult Index(string query)
+        // GET: Book
+        public ActionResult Book(int id)
         {
-            query = string.Format("http://libris.kb.se/xsearch?query={0}&format=json", query);
-
-            return View(((object)query));
+            return View();
         }
     }
 }
