@@ -22,7 +22,7 @@
 
 </div>
 
-<script>
+@*<script>
     function getResult() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -63,7 +63,7 @@
         xhttp.send();
     }
 
-</script>
+</script>*@
 
 @section ascripts
     {
@@ -84,7 +84,7 @@
                         if (isbn instanceof Array)
                             isbn = isbn[0];
 
-                        $("#result").append(formatResultDiv(list[i]));
+                        $("#result").append(formatSearchResult(list[i]));
                     }
                 }
             }

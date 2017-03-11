@@ -4,6 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section styles {
+    <style>
+        #book .search-result {
+            background-color: red;
+        }
+    </style>
+    }
+
 <h2>Book</h2>
 
 <div id="book"></div>
@@ -15,14 +23,26 @@
         $(document).ready(function () {
             var model = @Html.Raw(Json.Encode(Model));
 
-            GetRelatedBookInformation(model.isbn);
+            GetBookInformation(model.isbn);
 
             for (var i = 0; i < model.relatedisbns.length; i++) {
                 GetRelatedBookInformation(model.relatedisbns[i]);
             }
         });
 
-        function GetBookInformation() {}
+        function GetBookInformation(isbn) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonobj = JSON.parse(this.responseText);
+                    var list = jsonobj.xsearch.list;
+
+                    $("#book").append(formatResultDiv(list[0]));
+                }
+            }
+            xhttp.open("GET", "http://libris.kb.se/xsearch?query=isbn:" + isbn + "&format=json", true);
+            xhttp.send();
+        }
 
         function GetRelatedBookInformation(isbn) {
             var xhttp = new XMLHttpRequest();
