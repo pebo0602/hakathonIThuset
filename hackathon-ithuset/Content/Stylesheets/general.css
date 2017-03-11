@@ -35,3 +35,12 @@ input, button:focus{
 
 
 
+
+.search-result {
+
+    border: 1px solid black;
+    margin-top: 2%;
+    background-color: lightgreen;
+    border-radius: 2px;
+
+}

@@ -16,14 +16,14 @@
 </div>
 
 <div id="result">
-    <ul id="list"></ul>
+
 </div>
 
 <script>
     function getResult() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            $("#list").empty();
+            $("#result").empty();
             if (this.readyState == 4 && this.status == 200) {
 
                 var jsonobj = JSON.parse(this.responseText);
@@ -31,7 +31,19 @@
 
                 // TODO: Present beautifully
                 for (var i = 0; i < list.length; i++) {
-                    $("#list").append("<li>" + list[i].title + "</li>");
+                    var isbn = list[i].isbn;
+                    if(typeof instanceof Array)
+                        isbn = isbn[0];
+
+                    $("#result").append("<div>" + 
+                                        "<h3> Title: " + list[i].title + "</h3>" +
+                                        "<h5> Cteator: " + list[i].creator + "</h5>" +
+                                        "<br>" + 
+                                        "<strong> Date: </strong>" + list[i].date +
+                                        "<br>" + 
+                                        "<strong> Language: " + list[i].language + 
+                                        "<a href='/Home/Book/" + isbn + "'>View Book</a>" + 
+                                        "</div>");
                 }
             }
         }
