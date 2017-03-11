@@ -3,10 +3,17 @@
     ViewBag.Title = "Index";
 }
 
+@section stylesheets{
+<link href="~/Content/Stylesheets/general.css" rel="stylesheet" />
+<link href="~/Content/Stylesheets/index.css" rel="stylesheet" />
+}
+
 <h2>Index</h2>
 
-<input type="text" name="query" id="query" />
-<button class="search" onclick="getResult()">Sök</button>
+<div class="searchbar-container">
+    <input type="text" name="query" id="query"/>
+    <button class="button btn-white" onclick="getResult()">Sök</button>
+</div>
 
 <div id="result">
     <ul id="list"></ul>

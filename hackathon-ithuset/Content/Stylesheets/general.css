@@ -1,11 +1,37 @@
-﻿f-right{
+﻿.float-right{
     float: right;
 }
 
-f-left{
+.float-left{
     float: left;
 }
 
-f-center{
+.float-center{
     margin: auto;
 }
+
+.no-padding{
+    padding: 0;
+}
+
+.button{
+    height: 35px;
+    padding: 0 15px;
+    margin: 0;
+
+    border-radius: 0px;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-style: solid;
+}
+
+.btn-white{
+    background-color: white;
+}
+
+input, button:focus{
+    outline: none;
+}
+
+
+
