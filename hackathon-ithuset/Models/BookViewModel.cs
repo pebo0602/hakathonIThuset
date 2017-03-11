@@ -7,7 +7,7 @@ namespace hackathon_ithuset.Models
 {
     public class BookViewModel
     {
-        string isbn;
-        List<string> relatedisbns;
+        public string isbn;
+        public List<string> relatedisbns;
     }
 }

@@ -1,4 +1,4 @@
-﻿@model List<string>
+﻿@model hackathon_ithuset.Models.BookViewModel
 @{
     ViewBag.Title = "Book";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,10 +15,14 @@
         $(document).ready(function () {
             var model = @Html.Raw(Json.Encode(Model));
 
-            for (var i = 0; i < model.length; i++) {
-                GetRelatedBookInformation(model[i]);
+            GetRelatedBookInformation(model.isbn);
+
+            for (var i = 0; i < model.relatedisbns.length; i++) {
+                GetRelatedBookInformation(model.relatedisbns[i]);
             }
         });
+
+        function GetBookInformation() {}
 
         function GetRelatedBookInformation(isbn) {
             var xhttp = new XMLHttpRequest();
@@ -33,7 +37,8 @@
                                         "<br>" + 
                                         "<strong> Date: </strong>" + list[0].date +
                                         "<br>" + 
-                                        "<strong> Language: " + list[0].language + 
+                                        "<strong> Language: " + list[0].language +
+                                        "<br>" +
                                         "<a href='/Home/Book/" + isbn + "'>View Book</a>" + 
                                         "</div>");
                 }
