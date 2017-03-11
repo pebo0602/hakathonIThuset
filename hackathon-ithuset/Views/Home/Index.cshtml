@@ -5,12 +5,7 @@
 
 <h2>Index</h2>
 
-<<<<<<< HEAD
 @Model
-<form method="post">
-    <input type="text" name="query" />
-</form>
-=======
 <input type="text" name="query" id="query" />
 <button class="search" onclick="getResult()">Sök</button>
 
@@ -22,7 +17,7 @@
     function getResult() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            $("#list").empty();
+            $("#result").empty();
             if (this.readyState == 4 && this.status == 200) {
 
                 var jsonobj = JSON.parse(this.responseText);
@@ -30,19 +25,18 @@
 
                 // TODO: Present beautifully
                 for (var i = 0; i < list.length; i++) {
-                    
                     var isbn = list[i].isbn;
                     if(typeof instanceof Array)
                         isbn = isbn[0];
 
-                    $("#list").append("<div class='search-result'>" + 
-                                        "<h5> Title: " + list[i].title + "</h6>" +
-                                        "<h6> Creator: " + list[i].creator + "</h6>" +
+                    $("#result").append("<div>" + 
+                                        "<h3> Title: " + list[i].title + "</h3>" +
+                                        "<h5> Cteator: " + list[i].creator + "</h5>" +
                                         "<br>" + 
                                         "<strong> Date: </strong>" + list[i].date +
                                         "<br>" + 
                                         "<strong> Language: " + list[i].language + 
-                                        "<a href='/Home/Book/" + isbn + "'/>" + 
+                                        "<a href='/Home/Book/" + isbn + "'>View Book</a>" + 
                                         "</div>");
                 }
             }
@@ -51,4 +45,3 @@
         xhttp.send();
     }
 </script>
-

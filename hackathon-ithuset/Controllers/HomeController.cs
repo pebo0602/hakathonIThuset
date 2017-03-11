@@ -15,9 +15,9 @@ namespace hackathon_ithuset.Controllers
         }
 
         // GET: Book
-        public ActionResult Book(int id)
+        public ActionResult Book(int id = 0)
         {
-            return View();
+            return View(id);
         }
     }
 }
