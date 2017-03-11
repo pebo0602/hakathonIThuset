@@ -5,11 +5,17 @@
 
 <h2>Index</h2>
 
+<<<<<<< HEAD
+@Model
+<form method="post">
+    <input type="text" name="query" />
+</form>
+=======
 <input type="text" name="query" id="query" />
 <button class="search" onclick="getResult()">Sök</button>
 
 <div id="result">
-    <ul id="list"></ul>
+
 </div>
 
 <script>
@@ -24,7 +30,14 @@
 
                 // TODO: Present beautifully
                 for (var i = 0; i < list.length; i++) {
-                    $("#list").append("<li>" + list[i].title + "</li>");
+                    $("#list").append("<div>" + 
+                                        "<h3>" + list[i].title + "</h3>" +
+                                        "<h5>" + list[i].creator + "</h5>" +
+                                        "<br>" + 
+                                        "<strong>Date: </strong>" + list[i].date +
+                                        "<br>" + 
+                                        "<strong> Language: " + list[i].language + 
+                                        "</div>");
                 }
             }
         }
@@ -32,3 +45,4 @@
         xhttp.send();
     }
 </script>
+>>>>>>> 038961c367633c240184b005f891cd63d6190970
