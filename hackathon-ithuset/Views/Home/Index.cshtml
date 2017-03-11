@@ -6,7 +6,7 @@
 <h2>Index</h2>
 
 @Model
-<input type="text" name="query" id="query" />
+<input type="text" name="query" id="query"/>
 <button class="search" onclick="getResult()">Sök</button>
 
 <div id="result">
@@ -26,22 +26,38 @@
                 // TODO: Present beautifully
                 for (var i = 0; i < list.length; i++) {
                     var isbn = list[i].isbn;
-                    if(typeof instanceof Array)
+                    if(isbn instanceof Array)
                         isbn = isbn[0];
 
-                    $("#result").append("<div>" + 
+                    result = "<div class='search-result'>" + 
                                         "<h3> Title: " + list[i].title + "</h3>" +
-                                        "<h5> Cteator: " + list[i].creator + "</h5>" +
+                                        "<h5> Creator: " + list[i].creator + "</h5>" +
                                         "<br>" + 
                                         "<strong> Date: </strong>" + list[i].date +
                                         "<br>" + 
                                         "<strong> Language: " + list[i].language + 
-                                        "<a href='/Home/Book/" + isbn + "'>View Book</a>" + 
-                                        "</div>");
+                                        "<br>";
+
+                    if(isbn != "undefined") {
+                        result += "<a href='/Home/Book/" + isbn + "'>View related books</a>"
+                    }
+                     
+                     result += "</div>"
+
+                    $("#result").append(result);
                 }
             }
         }
         xhttp.open("GET", "http://libris.kb.se/xsearch?query=" + document.getElementById("query").value + "&format=json", true);
         xhttp.send();
     }
+
+
+    function getResultDiv(list){
+
+        
+
+
+    }
+
 </script>
