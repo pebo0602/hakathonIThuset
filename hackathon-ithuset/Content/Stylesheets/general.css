@@ -37,14 +37,16 @@ input, button:focus{
     outline: none;
 }
 
-
-
-
 .search-result {
-
     border: 1px solid black;
     margin-top: 2%;
     background-color: lightgreen;
     border-radius: 2px;
+}
 
+#book .search-result {
+    border: 0;
+    margin: 0;
+    background-color: white;
+    border-radius: 0;
 }
