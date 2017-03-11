@@ -1,2 +1,41 @@
-﻿body {
+﻿.header-box{
+    width: 320px;
+    margin: auto;
+    padding-bottom: 100px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.9);
 }
+
+.header-box h2{
+    font-size: 2.8em;
+}
+
+#query{
+    line-height: 1.2em;
+    font-size: 1.2em;
+    padding-left: 7px;
+    height: 35px;
+    width: calc(100% - 60px);
+    min-width: 250px;
+    max-width: none;
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1.5px 3.5px 0 rgba(0,0,0,0.2);
+}
+
+.searchbar-container{
+    padding: 5px;
+    margin-top: 100px;
+    min-width: 320px;
+    height: 100px;
+    width: 40vw;
+    overflow: auto;
+    margin: auto;
+    text-align: center;
+}
+
+.searchbar-container #query:hover{
+    box-shadow: 0 2.5px 6.5px 0 rgba(0,0,0,0.35);
+    transition-duration: 200ms;
+}
+
