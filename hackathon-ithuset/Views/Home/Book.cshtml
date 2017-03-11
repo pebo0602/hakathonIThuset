@@ -10,7 +10,7 @@
 <div id="related"></div>
 
 @section ascripts {
-
+<script src="~/Scripts/formatresult.js"></script>
     <script>
         $(document).ready(function () {
             var model = @Html.Raw(Json.Encode(Model));
@@ -31,16 +31,7 @@
                     var jsonobj = JSON.parse(this.responseText);
                     var list = jsonobj.xsearch.list;
 
-                    $("#related").append("<div class='search-result'>" + 
-                                        "<h3> Title: " + list[0].title + "</h3>" +
-                                        "<h5> Cteator: " + list[0].creator + "</h5>" +
-                                        "<br>" + 
-                                        "<strong> Date: </strong>" + list[0].date +
-                                        "<br>" + 
-                                        "<strong> Language: " + list[0].language +
-                                        "<br>" +
-                                        "<a href='/Home/Book/" + isbn + "'>View related Book</a>" + 
-                                        "</div>");
+                    $("#related").append(formatResultDiv(list[0]));
                 }
             }
             xhttp.open("GET", "http://libris.kb.se/xsearch?query=isbn:" + isbn + "&format=json", true);
