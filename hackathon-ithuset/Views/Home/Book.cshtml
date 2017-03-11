@@ -1,0 +1,36 @@
+﻿@model int
+@{
+    ViewBag.Title = "Book";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Book</h2>
+
+<div id="book"></div>
+<div id="related"></div>
+
+@section ascripts {
+
+    <script>
+    $(document).ready(function () {
+        console.log("Ready!");
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            $("#book").empty();
+            if (this.readyState == 4 && this.status == 200) {
+
+                var jsonobj = JSON.parse(this.responseText);
+                var list = jsonobj.xsearch.list;
+
+                // TODO: Present beautifully
+                for (var i = 0; i < list.length; i++) {
+                    $("#book").append(list[i].title);
+                }
+            }
+        }
+        xhttp.open("GET", "http://libris.kb.se/xsearch?query=isbn:0585348634&format=json", true);
+        xhttp.send();
+    });
+    </script>
+}
